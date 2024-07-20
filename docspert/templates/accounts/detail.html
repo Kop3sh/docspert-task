@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mx-auto mt-10">
+  <h1 class="text-3xl font-bold mb-5">Account Details</h1>
+  <div class="bg-white shadow-md rounded-lg p-5">
+    <p class="text-lg"><strong>ID:</strong> {{ account.id }}</p>
+    <p class="text-lg"><strong>Name:</strong> {{ account.name }}</p>
+    <p class="text-lg"><strong>Balance:</strong> {{ account.balance }}</p>
+    <a
+      href="{% url 'account_list' %}"
+      class="text-blue-500 hover:underline mt-5 inline-block"
+      >Back to Account List</a
+    >
+  </div>
+</div>
+
+{% endblock %}

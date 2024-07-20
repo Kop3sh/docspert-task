@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# static files for prod
+vol/
+
+#node modules
+node_modules/
+
 # C extensions
 *.so
 

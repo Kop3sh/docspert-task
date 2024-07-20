@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mx-auto mt-10">
+  <h1 class="text-3xl font-bold mb-5">Transfer Funds</h1>
+  <div class="bg-white shadow-md rounded-lg p-5">
+    <form method="post">
+      {% csrf_token %} {% if form.non_field_errors %}
+      <div class="text-red-500 text-sm mb-4">
+        {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2"
+          >{{ form.source.label }}</label
+        >
+        {{ form.source }}
+        <!-- Display field-specific errors -->
+        {% if form.source.errors %}
+        <div class="text-red-500 text-sm mt-1">
+          {% for error in form.source.errors %} {{ error }} {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2"
+          >{{ form.destination.label }}</label
+        >
+        {{ form.destination }}
+        <!-- Display field-specific errors -->
+        {% if form.destination.errors %}
+        <div class="text-red-500 text-sm mt-1">
+          {% for error in form.destination.errors %} {{ error }} {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2"
+          >{{ form.amount.label }}</label
+        >
+        {{ form.amount }}
+        <!-- Display field-specific errors -->
+        {% if form.amount.errors %}
+        <div class="text-red-500 text-sm mt-1">
+          {% for error in form.amount.errors %} {{ error }} {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Transfer
+      </button>
+    </form>
+  </div>
+  <a
+    href="{% url 'account_list' %}"
+    class="text-blue-500 hover:underline mt-5 inline-block"
+    >Back to Account List</a
+  >
+</div>
+
+{% endblock %}

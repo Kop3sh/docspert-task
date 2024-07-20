@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mx-auto mt-10">
+  <div class="flex justify-between items-center mb-5">
+    <h1 class="text-3xl font-bold">Account List</h1>
+    <a
+      href="{% url 'transfer_funds' %}"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >Transfer Funds</a
+    >
+  </div>
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <table class="min-w-full leading-normal">
+      <thead>
+        <tr>
+          <th
+            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          >
+            ID
+          </th>
+          <th
+            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          >
+            Name
+          </th>
+          <th
+            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+          >
+            Balance
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for account in accounts %}
+        <tr>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <a
+              href="{% url 'account_detail' account.id %}"
+              class="text-blue-500 hover:underline"
+              >{{ account.id }}</a
+            >
+          </td>
+          <!-- <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            {{ account.id }}
+          </td> -->
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            {{ account.name }}
+          </td>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            {{ account.balance }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- Pagination controls -->
+  <div class="flex justify-between items-center mt-5">
+    <div>
+      {% if accounts.has_previous %}
+      <a href="?page=1" class="text-blue-500 hover:underline">&laquo; First</a>
+      <a
+        href="?page={{ accounts.previous_page_number }}"
+        class="text-blue-500 hover:underline"
+        >&lsaquo; Previous</a
+      >
+      {% endif %}
+    </div>
+    <div>
+      <span class="text-gray-700"
+        >Page {{ accounts.number }} of {{ accounts.paginator.num_pages }}</span
+      >
+    </div>
+    <div>
+      {% if accounts.has_next %}
+      <a
+        href="?page={{ accounts.next_page_number }}"
+        class="text-blue-500 hover:underline"
+        >Next &rsaquo;</a
+      >
+      <a
+        href="?page={{ accounts.paginator.num_pages }}"
+        class="text-blue-500 hover:underline"
+        >Last &raquo;</a
+      >
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
