@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # plugins
+    "import_export",
+
     # custom apps
     "accounts"
 ]
@@ -101,6 +105,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# LOGGING = {
+#     "handlers": {
+#         "console": {"level": "DEBUG", "class": "logging.StreamHandler"},
+#     },
+#     "loggers": {
+#         "django.db.backends": {"level": "INFO", "handlers": ["console"]},
+#         "import_export": {
+#             "handlers": ["console"],
+#             "level": "INFO",
+#         },
+#     },
+# }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -117,7 +134,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/static/"
+MEDIA_URL = "/static/media/"
+STATIC_ROOT = BASE_DIR / "vol/web/media"
+MEDIA_ROOT = BASE_DIR / "vol/web/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
